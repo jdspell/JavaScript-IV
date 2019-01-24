@@ -81,6 +81,7 @@ const averageJoe = new Person(guy);
 averageJoe.speak();
 
 
+
 //tests student class
 let student = {
     name: "Joe",
@@ -100,6 +101,7 @@ studentOne.PRAssignment("Math");
 studentOne.sprintChallenge("Math");
 
 
+
 // tests Instructor class
 let instructor = {
     name: "Joe",
@@ -116,6 +118,7 @@ const instructOne = new Instructor(instructor);
 
 instructOne.demo("Math");
 instructOne.grade(student, "math")
+
 
 
 //tests PM class
