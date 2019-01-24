@@ -28,6 +28,19 @@ class Instructor extends Person{
     grade(student, subject){
         console.log(`${student.name} receives a perfect score on ${subject}`);
     }
+
+    changeGrade(student, typeOfChange){
+        const changeAmt = Math.floor(student.grade * Math.random());
+        if(typeOfChange === "subtract"){
+            student.grade -= changeAmt;
+            console.log(`${student.name}'s grade was ${typeOfChange}ed by ${changeAmt}.`);
+        } else if(typeOfChange === "add"){
+            student.grade += changeAmt;
+            console.log(`${student.name}'s grade was ${typeOfChange}ed by ${changeAmt}.`);
+        } else{
+            console.log("Need to input whether you want to subtract/add to the grade");
+        }
+    }
 }
 
 
@@ -37,6 +50,7 @@ class Student extends Person{
         this.previousBackground = attributes.previousBackground;
         this.className = attributes.className;
         this.favSubjects = attributes.favSubjects;
+        this.grade = attributes.grade;
     }
 
     listsSubjects(){
@@ -49,6 +63,14 @@ class Student extends Person{
 
     sprintChallenge(subject){
         console.log(`${this.name} has begun sprint challenge on ${subject}`);
+    }
+
+    graduate(){
+        if(this.grade > 70){
+            console.log("You passed!");
+        } else {
+            console.log("You need to redo some assignments.");
+        }
     }
 }
 
@@ -64,7 +86,7 @@ class ProjectManager extends Instructor{
     }
 
     debugsCode(student, subject){
-        console.log(`${this.name} debugs ${student.name}'s code on ${this.subject}`);
+        console.log(`${this.name} debugs ${student.name}'s code on ${subject}`);
     }
 }
 
@@ -93,12 +115,14 @@ let student = {
 student.previousBackground = "chemist";
 student.className = "web17";
 student.favSubjects = ['Html', 'CSS', 'JavaScript'];
+student.grade = 85;
 
 const studentOne = new Student(student);
 
 studentOne.listsSubjects();
 studentOne.PRAssignment("Math");
 studentOne.sprintChallenge("Math");
+studentOne.graduate();
 
 
 
@@ -118,6 +142,9 @@ const instructOne = new Instructor(instructor);
 
 instructOne.demo("Math");
 instructOne.grade(student, "math")
+instructOne.changeGrade(student, "subtract");
+instructOne.changeGrade(student, "add");
+instructOne.changeGrade(student, "nothing");
 
 
 
@@ -136,3 +163,6 @@ const pmOne = new ProjectManager(pm);
 
 pmOne.standUp("web17");
 pmOne.debugsCode(student, "math");
+pmOne.changeGrade(student, "subtract");
+pmOne.changeGrade(student, "add");
+pmOne.changeGrade(student, "nothing");
